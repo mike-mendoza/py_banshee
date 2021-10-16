@@ -7,14 +7,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name='py_banshee',                           # should match the package folder
     packages=['py_banshee'],                   # should match the package folder
-    version='0.1',                              # important for updates
+    version='1.0.0',                              # important for updates
     license='GNU',                                  # should match your chosen license
     description='Py_Banshee allows for quantifying non-parametric Bayesian Networks',
     long_description=long_description,              # loads your README.md
     long_description_content_type="text/markdown",  # README.md is of type 'markdown'
     author='Paul Koot, Miguel Angel Mendoza Lugo, Oswaldo Morales Napoles',
     author_email='mendozalugo@gmail.com',
-    url='https://github.com/mike-mendoza/py_banshee_test', 
+    url='https://github.com/mike-mendoza/py_banshee', 
     project_urls = {                                # Optional
         "Bug Tracker": "https://github.com/mike-mendoza/py_banshee/issues"
     },
@@ -31,5 +31,5 @@ setuptools.setup(
         'Programming Language :: Python :: 3.9',
     ],
     
-    download_url="https://github.com/mike-mendoza/py_banshee_test/archive/refs/tags/0.1.tar.gz",
+    download_url="https://github.com/mike-mendoza/py_banshee/archive/refs/tags/0.1.tar.gz",
 )
