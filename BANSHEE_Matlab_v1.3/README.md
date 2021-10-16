@@ -9,9 +9,13 @@ The src/ directory contains BANSHEE.mltbx file containing installer of the MATLA
 
 The docs/ directory contains a quick start guide to the toolbox. Please consult the guide before using the toolbox.
 
-This version (1.2) compared with published version supporting the SoftwareX publication (v1.1) has the following changes:
+This version (1.3) compared with published version supporting the SoftwareX publication (v1.1 and v1.2) has the following changes:
 - Adds two new real-life models for predicting flood losses for the residential and commercial sectors;
 - Updates the quick start guide;
 - Corrects the description in "predict_coastal_erosion.m";
 - Removes three .mat files which contained data alreary present in other .mat files;
 - Updates references to the SoftwareX paper and other publications.
+- The user can work with nodes as parametric distribution
+- The diferent sample samples sizes to compute the d-calibration score
+- Sample base conditioning
+- Conditional and un-conditional histograms  
