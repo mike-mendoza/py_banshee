@@ -21,7 +21,7 @@ Features:
 * py_banshee.sample_bn.generate_samples  --> Make samples using the defined Bayesian Network
 * py_banshee.sample_bn.sample_base_conditioning --> Make samples based conditioning on intervals
 * py_banshee.prediction.inference  --> Make predictions using a non-parametric Bayesian Network
-* py_banshee.prediction.conditoinal_margins_hist  --> Visualize the un-conditional and conditional marginal histograms
+* py_banshee.prediction.conditional_margins_hist  --> Visualize the un-conditional and conditional marginal histograms
 
 #### Demo of some of the features:
 
