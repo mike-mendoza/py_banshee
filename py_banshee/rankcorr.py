@@ -11,6 +11,7 @@ import scipy.stats as st
 import numpy as np
 import pingouin as pg
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 def bn_rankcorr(parent_cell, data, var_names, is_data=True, plot=False, fig_name=''):
@@ -352,7 +353,7 @@ def calc_val(cond, m):
         value of the index
     """
     n = len(cond)
-    sc = np.sort(cond)
+    sc = sorted(cond)
     if (n == 0):
         v = 0
         return v
@@ -360,6 +361,8 @@ def calc_val(cond, m):
     v = 0
     for i in range(0, n):
         v = (v + (sc[i] + 1) * m ** i)
+        v = np.array([v])[0]
+
     return v
 
 
@@ -485,7 +488,7 @@ def NormalTransform(data):
     M = data.shape[0]  # Reading number of observations per node
     ranks = data.rank(axis=0)
     u_hat = ranks / (M + 1)
-    norm_data = u_hat.apply(np.vectorize(st.norm.ppf))
+    norm_data = pd.DataFrame(data=st.norm.ppf(u_hat), columns=u_hat.columns)
     norm_data.replace([np.inf, -np.inf], 0, inplace=True)  # Adjusting abnormal values
     return norm_data, u_hat
 
