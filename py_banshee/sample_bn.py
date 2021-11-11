@@ -14,7 +14,7 @@ from scipy.stats import norm
 import pandas as pd
 
 
-def generate_samples(R, n, names, data, empirical_data=False, distributions=[], parameters=[]):
+def generate_samples(R, n, names, data, empirical_data=True, distributions=[], parameters=[]):
     """
     generate_samples compute n samples of the NPBN
     Parameters
@@ -28,7 +28,7 @@ def generate_samples(R, n, names, data, empirical_data=False, distributions=[], 
     data : pandas.core.frame.DataFrame
         By default, a matrix containing data for
         quantifying the NPBN.
-    empirical_data : bool,The default is False.
+    empirical_data : bool,The default is True.
         True = DATA is a pd.DataFrame with empirical observations
         if True distributions and parameters should be empty i.e.
         distributions=[], parameters=[]
@@ -48,7 +48,8 @@ def generate_samples(R, n, names, data, empirical_data=False, distributions=[], 
     """
 
     d = R.shape[0]
-    if not empirical_data:
+
+    if empirical_data:
         y = [ecdf(data.iloc[:, i].dropna())[0] for i in range(d)]
         x = [ecdf(data.iloc[:, i].dropna())[1] for i in range(d)]
     else:

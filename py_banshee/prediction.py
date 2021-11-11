@@ -155,7 +155,7 @@ def inference(Nodes, Values, R, DATA, Output='full',
                 NormalCond[i] = norm.ppf(f_int(Values[j, i]))
         else:
             for i in range(len(Nodes)):
-                NormalCond[i] = norm.ppf(dists[i].cdf(Values[j, i], *params[i]))
+                NormalCond[i] = norm.ppf(dists[Nodes[i]].cdf(Values[j, i], *params[Nodes[i]]))
 
         # Calculating the parameters of the conditional normal distribution 
         # (auxiliary function 2)
