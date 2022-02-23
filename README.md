@@ -8,7 +8,7 @@ This repository contains:
 
 These codes are an update of the original version supporting SoftwareX paper: https://doi.org/10.1016/j.softx.2020.100588
 
-The packages allows for quantifying the BN, validating the underlying assumptions of the model, visualizing the network and its corresponding rank correlation matrix, sampling and finally making inference with a BN based on existing or new evidence.
+The packages allows for quantifying the BN, validating the underlying assumptions of the model, visualizing the network and its corresponding rank correlation matrix, sampling and finally making inference with a BN based on existing or new evidence. BANSHEE Matlab v1.3 and Py_BANSHEE have the same features.
 
 # Py_BANSHEE
 
