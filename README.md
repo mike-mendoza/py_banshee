@@ -15,10 +15,16 @@ The packages allows for quantifying the BN, validating the underlying assumption
 Py_BANSHEE  is a Python-based open source of the MATLAB toolbox [BANSHEE](https://doi.org/10.1016/j.softx.2020.100588). 
 
 ## Installation and updating
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install Toolbox like below. 
-Rerun this command to check for and install  updates .
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install last stable version of the package. 
+
 ```bash
 pip install py-banshee
+```
+However, if you are looking for latest updates, consider installation directly from sources.
+```
+git clone https://github.com/mike-mendoza/py_banshee.git
+cd py_banshee
+python setup.py install
 ```
 
 ## Usage
