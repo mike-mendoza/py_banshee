@@ -20,7 +20,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install last st
 ```bash
 pip install py-banshee
 ```
-However, if you are looking for latest updates, consider installation directly from sources.
+However, if you are looking for the latest updates, consider installation directly from sources.
 ```
 git clone https://github.com/mike-mendoza/py_banshee.git
 cd py_banshee
