@@ -68,9 +68,12 @@ def cvm_statistic(DATA, names, plot=False, fig_name=''):
     Rd = sc.stats.spearmanr(DATA2)[0]  # compute correlation
     Nk_i = 0  # initiate counter to allocate combination in M
     # Calculating the CvM statistics per each pair and copula type
+    var_nam=[]
     for i in list(indP):
         # Selecting variables for the pair
         var = DATA.iloc[:, [i[0], i[1]]]
+        var_nam.append(var.columns.tolist())
+        var_nam =np.array(var_nam)
         # Storing the numbers of the variables in the pair
         M[Nk_i, 0] = i[0]
         M[Nk_i, 1] = i[1]
@@ -83,30 +86,60 @@ def cvm_statistic(DATA, names, plot=False, fig_name=''):
         M[Nk_i, 6] = CVM(var, 'Gumbel')
         Nk_i += 1
 
+    #dataframe 
+    M_df = pd.DataFrame(np.concatenate((var_nam,M[:,2:7]), axis=1))
+    M_df.columns = ['Var1','Var2','r', 'Clayton','Frank','Gaussian','Gumbel']
+    M_df.iloc[:,2:7]=M_df.iloc[:,2:7].astype(float)
+    
+    
     if plot:
         fig, ax = plt.subplots(figsize=(12, 12), sharex=False, sharey=False, ncols=N - 1, nrows=N - 1)
         x = np.arange(4)
         labels = ['Cla', 'Fra', 'Gau', 'Gum']
         colors = ['#1f77b4', '#1f77b4', '#BFE5D9', '#1f77b4']
         count = 0
-        for i in range(N - 1):
-            for j in range(N - 1):
-                if i > j:
-                    ax[i, j].axis('off')
-                else:
-                    ax[i, j].bar(x, M[count, 3:7], color=colors)
-                    ax[i, j].set_xticks(x)
-                    ax[i, j].set_xticklabels(labels, rotation=90)
-                    if i == 0:
-                        ax[i, j].set_title(names[int(M[count, 1])])
-                    if i == j:
-                        ax[i, j].set_ylabel(names[int(M[count, 0])])
-                    count += 1
+        if N<=12:
+            for i in range(N - 1):
+                for j in range(N - 1):
+                    if i > j:
+                        ax[i, j].axis('off')
+                    else:
+                        ax[i, j].bar(x, M[count, 3:7], color=colors)
+                        ax[i, j].yaxis.set_label_position("right")
+                        ax[i, j].set_xticks(x)
+                        ax[i, j].set_xticklabels(labels, rotation=90)
+                        if i == 0:
+                            ax[i, j].set_title(names[int(M[count, 1])])
+                        ax[i, N-2].set_ylabel(names[int(M[count, 0])],fontsize='large',
+                                              rotation='horizontal',ha='left',va="center")    
+                        count += 1
+                        
+        else:                
+            for i in range(N - 1):
+                for j in range(N - 1):
+                    if i > j:
+                        ax[i, j].axis('off')
+                    else:
+                        ax[i, j].bar(x, M[count, 3:7], color=colors)
+                        ax[i, j].yaxis.set_label_position("right")
+                        ax[i, j].tick_params(axis='x',bottom=False,labelbottom=False)
+                        ax[i, j].tick_params(axis='y',left=False,labelleft=False)
+                        if i == 0:
+                            ax[i, j].set_title(names[int(M[count, 1])],rotation=30)
+                            
+                        if i == j:
+                            ax[i, j].set_xticks(x)
+                            ax[i, j].set_xticklabels(labels, rotation=90)
+                            ax[i, j].tick_params(axis='x',bottom=True,labelbottom=True)
+                        ax[i, N-2].set_ylabel(names[int(M[count, 0])],fontsize='large',
+                                              rotation='horizontal',ha='left',va="center")    
+                        count += 1
+                        
+                        
+        plt.savefig('cvm_statistics_{}.pdf'.format(fig_name))
+        plt.show()
 
-        plt.tight_layout()
-        plt.savefig('cvm_statistics_{}.png'.format(fig_name))
-
-    return M
+    return M_df
 
 
 # -------------------------------------------------------------------------

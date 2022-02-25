@@ -533,9 +533,12 @@ def rank_corr_mat_fig(NamesBN, RBN):
 
     px = list(range(len(nam)))  # position of the labels
 
-    fig, ax = plt.subplots(figsize=(15, 11))
+    fig, ax = plt.subplots(figsize=(11, 8))
     im = plt.imshow(z, cmap='Blues', interpolation='nearest')
-    plt.colorbar()
+    cbar = plt.colorbar()  #color bar options 
+    for t in cbar.ax.get_yticklabels():
+         t.set_fontsize(14)
+         t.set_fontweight('semibold')
 
     if len(nam) <= 20:
         plt.xticks(px, nam, rotation=45)
@@ -543,8 +546,10 @@ def rank_corr_mat_fig(NamesBN, RBN):
     else:  # plot the only the reduces names so the plot doesnt look saturated
         plt.xticks(px[::nv], nam[::nv], rotation=45)
         plt.yticks(px[::nv], nam[::nv])
-    plt.setp(ax.get_xticklabels(), fontsize=14)
-    plt.setp(ax.get_yticklabels(), fontsize=14)
+        
+    font_weight = 550  #a numeric value in range 0-1000 
+    plt.setp(ax.get_xticklabels(), fontsize=16,fontweight=font_weight)
+    plt.setp(ax.get_yticklabels(), fontsize=16,fontweight=font_weight)
 
     if len(nam) <= 10:
         zz = np.round(RBN, 4)
@@ -553,9 +558,15 @@ def rank_corr_mat_fig(NamesBN, RBN):
             for j in range(len(nam)):
                 if zz[i, j] == '0.0':
                     zz[i, j] = ''
-                text = ax.text(j, i, zz[i, j],
+                if zz[i,j] == '1.0':
+                    text = ax.text(j, i, zz[i, j],
                                ha="center", va="center",
-                               color="k", fontsize='xx-large', fontweight='roman')
+                               color="white", fontsize=18, fontweight=font_weight)
+                else:    
+                    text = ax.text(j, i, zz[i, j],
+                               ha="center", va="center",
+                               color="#1E1E1E", fontsize=18, fontweight=font_weight)
+    plt.savefig('rank_corr_matrix.pdf')
     plt.show()
 
     return None

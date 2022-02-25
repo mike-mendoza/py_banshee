@@ -429,16 +429,22 @@ def conditional_margins_hist(F, DATA, names, condition_nodes, empirical_data=Tru
             F_cond = np.array(F[0]).transpose()
             for i in range(nr_remaining_nodes):
                 F_cond[:, i]
-                plt.figure()
-                plt.hist(F_uncond[:, i], bins=20, edgecolor="black", color='silver',
+                plt.figure(figsize=(7,4))
+                plt.hist(F_uncond[:, i], bins=20, edgecolor="silver", color='silver',
                          label=['un-conditionalized\n mean: ' + str(round(np.mean(F_uncond[:, i]), 1))])
-                plt.hist(F_cond[:, i], bins=20, alpha=0.7, edgecolor="black", color='cornflowerblue',
+                plt.hist(F_cond[:, i], bins=20, edgecolor="cornflowerblue", color='cornflowerblue',
                          label=['conditionalized\n mean: ' + str(round(np.mean(F_cond[:, i]), 1))])
-                plt.legend()
-                plt.ylabel("Count")
-                plt.title(names[remaining_nodes[i]], fontsize=15)
+                plt.legend(fontsize=18)
+                plt.ylabel("Count", fontsize=18 )
+                plt.xlabel("x", fontsize=18)
+                plt.title(names[remaining_nodes[i]], fontsize=20, fontweight=550)
+                plt.xticks(fontsize=18)
+                plt.yticks(fontsize=18)
+                plt.tight_layout()
+                plt.savefig(names[remaining_nodes[i]] + '_uncond_cond.pdf')
                 plt.show()
-                plt.savefig(names[remaining_nodes[i]] + '_uncond_cond.png')
+                
+        
         except:
             raise Exception('Check if argument Output in inference is equal to full')
     else:
@@ -452,16 +458,21 @@ def conditional_margins_hist(F, DATA, names, condition_nodes, empirical_data=Tru
             F_cond = np.array(F[0]).transpose()
             for i in range(nr_remaining_nodes):
                 F_cond[:, i]
-                plt.figure()
+                plt.figure(figsize=(7, 4))
                 plt.hist(F_uncond[:, i], bins=20, edgecolor='silver', color='silver',
                          label=['un-conditionalized\n mean: ' + str(round(np.mean(F_uncond[:, i]), 1))])
-                plt.hist(F_cond[:, i], bins=20, alpha=0.7, edgecolor="black", color='cornflowerblue',
+                plt.hist(F_cond[:, i], bins=20, edgecolor="cornflowerblue", color='cornflowerblue',
                          label=['conditionalized\n mean: ' + str(round(np.mean(F_cond[:, i]), 1))])
-                plt.legend()
-                plt.ylabel("Count")
-                plt.title(names[remaining_nodes[i]], fontsize=15)
+                plt.legend(fontsize=18)
+                plt.ylabel("Count", fontsize=18 )
+                plt.xlabel("x", fontsize=18)
+                plt.title(names[remaining_nodes[i]], fontsize=20, fontweight=550)
+                plt.xticks(fontsize=18)
+                plt.yticks(fontsize=18)
+                plt.tight_layout()
+                plt.savefig(names[remaining_nodes[i]] + '_uncond_cond.pdf')
                 plt.show()
-                plt.savefig(names[remaining_nodes[i]] + '_uncond_cond.png')
+				
         except:
             raise Exception('Check if argument Output in inference is equal to full')
     return None

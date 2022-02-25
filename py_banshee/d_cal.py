@@ -162,35 +162,40 @@ def gaussian_distance(R, DATA, SampleSize_1=1000,
         # first subplot with the d-calibration and range for the ERC
         f, x = ecdf(pd.Series(D_NR))
 
-        fig, ax = plt.subplots(figsize=(13, 7), sharex=False, sharey=False, ncols=2, nrows=1)
+        fig, ax = plt.subplots(figsize=(12, 6), sharex=False, sharey=False, ncols=2, nrows=1)
         ax[0].step(np.array(x), np.array(f), color='k')
         ax[0].plot([D_ERC, D_ERC], [f[1], 1], 'r', linewidth=2)
         ax[0].set_ylim([f[0], f[-1]])
-        ax[0].set_xlabel('d-calibration score')
-        ax[0].set_ylabel('Cumulative density function')
+        ax[0].set_xlabel('d-calibration score',fontsize=15)
+        ax[0].set_ylabel('Cumulative density function',fontsize=15)
         ax[0].plot(B_ERC, q, 'or', markersize=6)
-        ax[0].title.set_text('d-Cal(ERC,NRC)\n' \
-                             'in the distribution of\n' \
-                             'd-Cal(NRC,NRC)\n' \
-                             '{} samples in {} iterations'.format(str(SampleSize_1), str(M)))
+        ax[0].set_title('d-Cal(ERC,NRC)\n '
+                    'in the distribution of\n '
+                    'd-Cal(NRC,NRC)\n '+
+                    str(SampleSize_1) +' samples in '+ str(M)+'iterations', fontsize=17)
         ax[0].grid(which="both", ls="--", linewidth=.5)
+        ax[0].tick_params(axis ='x', labelsize=14, labelrotation=45)
+        ax[0].tick_params(axis ='y', labelsize=14)
 
+        
         # second subplot with the d-calibration and range for the BNRC
         f1, x1 = ecdf(pd.Series(D_BN))
 
         ax[1].step(np.array(x1), np.array(f1), '-k')
-
         ax[1].plot([D_BNRC, D_BNRC], [f1[1], 1], 'r', linewidth=2)
         ax[1].set_ylim([f1[0], f1[-1]])
-        ax[1].set_xlabel('d-calibration score')
+        ax[1].set_xlabel('d-calibration score', fontsize=16)
         # ax[0,1].set_ylabel('Cumulative density function')    
         ax[1].plot(B_BNRC, q, 'or', markersize=6)
-        ax[1].title.set_text('d-Cal(NRC,BNRC)\n' \
-                             'in the distribution of\n' \
-                             'd-Cal(BNRC,BNRC)\n' \
-                             '{} samples in {} iterations'.format(str(SampleSize_2), str(M)))
+        ax[1].set_title('d-Cal(NRC,BNRC)\n '
+                    'in the distribution of\n '
+                    'd-Cal(BNRC,BNRC)\n '+
+                    str(SampleSize_2) +' samples in '+ str(M)+'iterations', fontsize=17)
         ax[1].grid(which="both", ls="--", linewidth=.5)
-        plt.savefig('gaussian_distance_{}.png'.format(fig_name))
+        ax[1].tick_params(axis ='x', labelsize=14, labelrotation=45)
+        ax[1].tick_params(axis ='y', labelsize=14)
+        plt.tight_layout()
+        plt.savefig('gaussian_distance_{}.pdf'.format(fig_name))
         plt.show()
 
     if D_ERC > B_ERC[0] and D_ERC < B_ERC[1]:
