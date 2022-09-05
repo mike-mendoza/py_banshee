@@ -5,9 +5,9 @@ Bayesian Networks (BNs) are probabilistic, graphical models for representing com
 This repository contains:
 * Py_BANSHEE a Python-based open source of the MATLAB toolbox.
 
-These codes are an update of the original version supporting SoftwareX paper: https://doi.org/10.1016/j.softx.2020.100588
+These codes are an update of the original version supporting SoftwareX paper: https://doi.org/10.1016/j.softx.2020.100588. The latest version of MATLAB BANSHEE (v1.3) can be found [here](https://github.com/mike-mendoza/matlab_banshee). 
 
-The packages allows for quantifying the BN, validating the underlying assumptions of the model, visualizing the network and its corresponding rank correlation matrix, sampling and finally making inference with a BN based on existing or new evidence.
+The packages allows for quantifying the BN, validating the underlying assumptions of the model, visualizing the network and its corresponding rank correlation matrix, sampling and finally making inference with a BN based on existing or new evidence. MATLAB BANSHEE v1.3 and Py_BANSHEE have the same features.
 
 # Py_BANSHEE
 
