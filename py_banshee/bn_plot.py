@@ -49,42 +49,37 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
     None.
     """
 
+
     G = nx.DiGraph()
     if isinstance(data, pd.DataFrame):
         for node in data:
             plt.figure()
             h = sns.histplot(data[node], kde=True)
-            h.set_xlabel('x')
+            h.set_xlabel("")
             h.set_title('{}'.format(node), fontsize=25)
-            plt.xticks(rotation=45)
-            plt.ylabel("Count", fontsize=18)
-            plt.xlabel("x", fontsize=18)
-            plt.xticks(fontsize=14)
-            plt.yticks(fontsize=14)
-            plt.tight_layout()
             plt.savefig('histogram_{}.png'.format(node))
             G.add_node(node, image='histogram_{}.png'.format(node),
                        fontsize=0)
             plt.show()
     else:
-        G.add_nodes_from(names, style='filled', fillcolor='#A2BFE8',fontsize=18)
+        G.add_nodes_from(names, style='filled', fillcolor='red')
+        plt.show()
         
-
+    edgs=[]
     for i in range(len(names)):
         parents = parent_cell[i]
         for j in parents:
-            G.add_edge(names[j], names[i], label=("%.2f") % R[j, i],font_family='sans-serif',
-                       fontsize=18)
+            edgs.append((names[j], names[i]))
+            G.add_edges_from(edgs,label= f'{round(R[j, i],2)}')
 
-    nx.drawing.nx_pydot.write_dot(G, 'BN_visualize_{}'.format(fig_name))
+    nx.drawing.nx_pydot.write_dot(G, f'BN_visualize_{fig_name}')
     # Convert dot file to png file
-    gv.render('dot', 'pdf', 'BN_visualize_{}'.format(fig_name))
+    gv.render('dot', 'png', 'BN_visualize_{}'.format(fig_name))
 
     def deleteFile(filename):
         if os.path.exists(filename) and not os.path.isdir(filename) and not os.path.islink(filename):
             os.remove(filename)
 
     deleteFile('BN_visualize_{}'.format(fig_name))
-    #Image(filename='BN_visualize_{}'.format(fig_name) + '.png')
-    # return Image(filename='BN_visualize_{}'.format(fig_name) + '.png')
-    return 'BN plot saved in : '+ os.getcwd() +'\\'+ 'BN_visualize_{}'.format(fig_name) +'.pdf' 
+
+    return Image(filename='BN_visualize_{}'.format(fig_name) + '.png')
