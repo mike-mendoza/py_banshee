@@ -69,7 +69,7 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
     else:
         G.add_nodes_from(names, style='filled', fillcolor='red')
         plt.show()
-    #-----    
+       
     #edges and labels
     edgs=[]
     edglbs=[]
@@ -81,15 +81,15 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
             
     for k in range(len(edgs)):
         G.add_edges_from([edgs[k]], label = edglbs[k])
-    #----
+    
     
     nx.drawing.nx_pydot.write_dot(G, f'BN_visualize_{fig_name}')
     # Convert dot file to png file
     gv.render('dot', 'pdf', 'BN_visualize_{}'.format(fig_name))
     deleteFile('BN_visualize_{}'.format(fig_name))
 
-    return Image(filename='BN_visualize_{}'.format(fig_name) + '.png')
-    #return 'BN plot saved in : '+ os.getcwd() +'\\'+ 'BN_visualize_{}'.format(fig_name) +'.pdf' 
+
+    return f'BN plot saved in : {os.getcwd()}\BN_visualize_{fig_name}.pdf' 
 
 
 def deleteFile(filename):
