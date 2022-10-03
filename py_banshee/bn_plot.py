@@ -49,14 +49,19 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
     None.
     """
 
-
     G = nx.DiGraph()
     if isinstance(data, pd.DataFrame):
         for node in data:
             plt.figure()
             h = sns.histplot(data[node], kde=True)
-            h.set_xlabel("")
+            h.set_xlabel('x')
             h.set_title('{}'.format(node), fontsize=25)
+            plt.xticks(rotation=45)
+            plt.ylabel("Count", fontsize=18)
+            plt.xlabel("x", fontsize=18)
+            plt.xticks(fontsize=14)
+            plt.yticks(fontsize=14)
+            plt.tight_layout()
             plt.savefig('histogram_{}.png'.format(node))
             G.add_node(node, image='histogram_{}.png'.format(node),
                        fontsize=0)
@@ -64,22 +69,29 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
     else:
         G.add_nodes_from(names, style='filled', fillcolor='red')
         plt.show()
-        
+    #-----    
+    #edges and labels
     edgs=[]
+    edglbs=[]
     for i in range(len(names)):
         parents = parent_cell[i]
         for j in parents:
             edgs.append((names[j], names[i]))
-            G.add_edges_from(edgs,label= f'{round(R[j, i],2)}')
-
+            edglbs.append(f'{round(R[j, i],2)}')
+            
+    for k in range(len(edgs)):
+        G.add_edges_from([edgs[k]], label = edglbs[k])
+    #----
+    
     nx.drawing.nx_pydot.write_dot(G, f'BN_visualize_{fig_name}')
     # Convert dot file to png file
-    gv.render('dot', 'png', 'BN_visualize_{}'.format(fig_name))
-
-    def deleteFile(filename):
-        if os.path.exists(filename) and not os.path.isdir(filename) and not os.path.islink(filename):
-            os.remove(filename)
-
+    gv.render('dot', 'pdf', 'BN_visualize_{}'.format(fig_name))
     deleteFile('BN_visualize_{}'.format(fig_name))
 
     return Image(filename='BN_visualize_{}'.format(fig_name) + '.png')
+    #return 'BN plot saved in : '+ os.getcwd() +'\\'+ 'BN_visualize_{}'.format(fig_name) +'.pdf' 
+
+
+def deleteFile(filename):
+    if os.path.exists(filename) and not os.path.isdir(filename) and not os.path.islink(filename):
+        os.remove(filename)
