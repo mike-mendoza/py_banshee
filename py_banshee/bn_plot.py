@@ -78,16 +78,14 @@ def bn_visualize(parent_cell, R, names, data=None, fig_name=''):
         for j in parents:
             edgs.append((names[j], names[i]))
             edglbs.append(f'{round(R[j, i],2)}')
-            
+    #add edges and labels         
     for k in range(len(edgs)):
         G.add_edges_from([edgs[k]], label = edglbs[k])
-    
-    
+    #dot file
     nx.drawing.nx_pydot.write_dot(G, f'BN_visualize_{fig_name}')
     # Convert dot file to png file
-    gv.render('dot', 'pdf', 'BN_visualize_{}'.format(fig_name))
-    deleteFile('BN_visualize_{}'.format(fig_name))
-
+    gv.render('dot', 'pdf', f'BN_visualize_{fig_name}')
+    deleteFile(f'BN_visualize_{fig_name}')
 
     return f'BN plot saved in : {os.getcwd()}\BN_visualize_{fig_name}.pdf' 
 
