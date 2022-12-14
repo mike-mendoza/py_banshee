@@ -7,6 +7,8 @@ This repository contains:
 
 These codes are an update of the original version supporting SoftwareX paper: https://doi.org/10.1016/j.softx.2020.100588. The latest version of MATLAB BANSHEE (v1.3) can be found [here](https://github.com/mike-mendoza/matlab_banshee). 
 
+The supporting SoftwareX paper for PyBanhsee, _PyBanshee version (1.0): A Python implementation of the MATLAB toolbox BANSHEE for Non-Parametric Bayesian Networks with updated features_, can be found at https://doi.org/10.1016/j.softx.2022.101279 
+
 The packages allows for quantifying the BN, validating the underlying assumptions of the model, visualizing the network and its corresponding rank correlation matrix, sampling and finally making inference with a BN based on existing or new evidence. MATLAB BANSHEE v1.3 and Py_BANSHEE have the same features.
 
 # PyBanshee
@@ -90,7 +92,6 @@ conditional_margins_hist(F,[],names,condition_nodes,
                          distributions=distributions,
                          parameters=parameters)
 ```
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
