@@ -3,7 +3,7 @@
 Bayesian Networks (BNs) are probabilistic, graphical models for representing complex dependency structures. They have many applications in science and engineering. Their particularly powerful variant – Non-Parametric BNs – are  implemented as a Matlab toolbox and an open-access scriptable code, in the form of a Python-based package.
 
 This repository contains:
-* Py_BANSHEE a Python-based open source of the MATLAB toolbox.
+* PyBanshee a Python-based open source of the MATLAB toolbox.
 
 These codes are an update of the original version supporting SoftwareX paper: https://doi.org/10.1016/j.softx.2020.100588. The latest version of MATLAB BANSHEE (v1.3) can be found [here](https://github.com/mike-mendoza/matlab_banshee). 
 
