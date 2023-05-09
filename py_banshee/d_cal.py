@@ -260,10 +260,11 @@ def test_distance(Sigma1, Sigma2, Type, Nvar):
         # equation proper
         D = (1 - (np.mul(a,b))) ** (1 / 2)
     elif Type == 'KL':
-        # Symmetric Kullback–Leibler divergence
-        D = (1 / 2) * (m1 - m2).reshape(1, -1) @ (np.linalg.inv(Sigma1) + np.linalg.inv(Sigma2)) @ (m1 - m2) + \
-            (1 / 2) * np.trace(np.matmul(np.linalg.inv(Sigma1), Sigma2) + \
-                               np.matmul(Sigma1, np.linalg.inv(Sigma2)) - 2 * np.identity(Sigma1.shape[0]))
+        # Symmetric Kullback–Leibler divergence
+        D = (1 / 2) * (m1 - m2).reshape(1, -1) @ (np.linalg.inv(Sigma1) + np.linalg.inv(Sigma2)) @ (m1 - m2) + \
+            (1 / 2) * np.trace(np.matmul(np.linalg.inv(Sigma1), Sigma2) + \
+                               np.matmul(Sigma1, np.linalg.inv(Sigma2)) - 2 * np.identity(Sigma1.shape[0]))
+
     elif Type == 'B':
         # Bhattacharyya distance
         D = (1 / 8) * (m1 - m2).reshape(1, -1) @ np.linalg.inv((1 / 2) * Sigma1 + (1 / 2) * Sigma2) @ (m1 - m2) + \
