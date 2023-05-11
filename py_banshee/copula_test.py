@@ -73,7 +73,6 @@ def cvm_statistic(DATA, names, plot=False, fig_name=''):
         # Selecting variables for the pair
         var = DATA.iloc[:, [i[0], i[1]]]
         var_nam.append(var.columns.tolist())
-        var_nam =np.array(var_nam)
         # Storing the numbers of the variables in the pair
         M[Nk_i, 0] = i[0]
         M[Nk_i, 1] = i[1]
@@ -85,13 +84,13 @@ def cvm_statistic(DATA, names, plot=False, fig_name=''):
         M[Nk_i, 5] = CVM(var, 'Gaussian')
         M[Nk_i, 6] = CVM(var, 'Gumbel')
         Nk_i += 1
+    
 
     #dataframe 
     M_df = pd.DataFrame(np.concatenate((var_nam,M[:,2:7]), axis=1))
     M_df.columns = ['Var1','Var2','r', 'Clayton','Frank','Gaussian','Gumbel']
     M_df.iloc[:,2:7]=M_df.iloc[:,2:7].astype(float)
-    
-    
+                     
     if plot:
         fig, ax = plt.subplots(figsize=(12, 12), sharex=False, sharey=False, ncols=N - 1, nrows=N - 1)
         x = np.arange(4)
