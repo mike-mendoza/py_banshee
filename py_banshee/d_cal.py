@@ -258,7 +258,7 @@ def test_distance(Sigma1, Sigma2, Type, Nvar):
             np.linalg.det((1 / 2) * Sigma1 + (1 / 2) * Sigma2) ** (1 / 2)
         b = np.exp(-(1 / 8) * (m1 - m2).reshape(1, -1) @ np.linalg.inv((1 / 2) * Sigma1 + (1 / 2) * Sigma2) @ (m1 - m2))
         # equation proper
-        D = (1 - (np.mul(a,b))) ** (1 / 2)
+        D = (1 - (np.multiply(a,b))) ** (1 / 2)
     elif Type == 'KL':
         # Symmetric Kullback–Leibler divergence
         D = (1 / 2) * (m1 - m2).reshape(1, -1) @ (np.linalg.inv(Sigma1) + np.linalg.inv(Sigma2)) @ (m1 - m2) + \
