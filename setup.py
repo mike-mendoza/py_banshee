@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name='py_banshee',                           # should match the package folder
     packages=['py_banshee'],                   # should match the package folder
-    version='1.1.0',                              # important for updates
+    version='1.1.1',                              # important for updates
     license='GNU',                                  # should match your chosen license
     description='Py_Banshee allows for quantifying non-parametric Bayesian Networks',
     long_description=long_description,              # loads your README.md
@@ -31,5 +31,5 @@ setuptools.setup(
         'Programming Language :: Python :: 3.9',
     ],
     
-    download_url="https://github.com/mike-mendoza/py_banshee/archive/refs/tags/v1.1.0.tar.gz",
+    download_url="https://github.com/mike-mendoza/py_banshee/archive/refs/tags/v1.1.1.tar.gz",
 )
