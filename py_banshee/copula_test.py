@@ -6,7 +6,7 @@ Authors: Paul Koot, Miguel Angel Mendoza-Lugo, Dominik Paprotny,
 
 E-mail:  m.a.mendozalugo@tudelft.nl, paulkoot6@gmail.com & O.MoralesNapoles@tudelft.nl
 """
-
+import math
 import numpy as np
 import scipy as sc
 import pandas as pd
@@ -57,7 +57,8 @@ def cvm_statistic(DATA, names, plot=False, fig_name=''):
     # Calculating the number of combinations and an index for looping
     k = 2  # size of a group
     # Number of Combinations
-    Nk = int(np.math.factorial(N) / (np.math.factorial(N - k) * np.math.factorial(k)))
+    #Nk = int(np.math.factorial(N) / (np.math.factorial(N - k) * np.math.factorial(k)))
+    Nk = int(math.factorial(N) / (math.factorial(N - k) * math.factorial(k)))
     # Vector of indices to calculate the test
     indP = combinations(range(N), k)
     M = np.empty((Nk, 7))  # preallocation
