@@ -334,39 +334,14 @@ def make_dist(distributions, parameters):
        A list of list with the parameters of the distributions 
 
     '''
-    dist_all = [scipy.stats.alpha, scipy.stats.anglit, scipy.stats.arcsine, scipy.stats.argus, scipy.stats.beta,
-                scipy.stats.betaprime, scipy.stats.bradford, scipy.stats.burr, scipy.stats.burr12, scipy.stats.cauchy,
-                scipy.stats.chi, scipy.stats.chi2, scipy.stats.cosine, scipy.stats.crystalball, scipy.stats.dgamma,
-                scipy.stats.dweibull, scipy.stats.erlang, scipy.stats.expon, scipy.stats.exponnorm,
-                scipy.stats.exponweib,
-                scipy.stats.exponpow, scipy.stats.f, scipy.stats.fatiguelife, scipy.stats.fisk, scipy.stats.foldcauchy,
-                scipy.stats.foldnorm, scipy.stats.genlogistic, scipy.stats.gennorm, scipy.stats.genpareto,
-                scipy.stats.genexpon,
-                scipy.stats.genextreme, scipy.stats.gausshyper, scipy.stats.gamma, scipy.stats.gengamma,
-                scipy.stats.genhalflogistic,
-                scipy.stats.geninvgauss, scipy.stats.gilbrat, scipy.stats.gompertz, scipy.stats.gumbel_r,
-                scipy.stats.gumbel_l,
-                scipy.stats.halfcauchy, scipy.stats.halflogistic, scipy.stats.halfnorm, scipy.stats.halfgennorm,
-                scipy.stats.hypsecant, scipy.stats.invgamma, scipy.stats.invgauss, scipy.stats.invweibull,
-                scipy.stats.johnsonsb,
-                scipy.stats.johnsonsu, scipy.stats.kappa4, scipy.stats.kappa3, scipy.stats.ksone, scipy.stats.kstwo,
-                scipy.stats.kstwobign, scipy.stats.laplace, scipy.stats.laplace_asymmetric, scipy.stats.levy,
-                scipy.stats.levy_l, scipy.stats.levy_stable, scipy.stats.logistic, scipy.stats.loggamma,
-                scipy.stats.loglaplace, scipy.stats.lognorm, scipy.stats.loguniform, scipy.stats.lomax,
-                scipy.stats.maxwell, scipy.stats.mielke, scipy.stats.moyal, scipy.stats.nakagami, scipy.stats.ncx2,
-                scipy.stats.ncf, scipy.stats.nct, scipy.stats.norm, scipy.stats.norminvgauss, scipy.stats.pareto,
-                scipy.stats.pearson3, scipy.stats.powerlaw, scipy.stats.powerlognorm, scipy.stats.powernorm,
-                scipy.stats.rdist, scipy.stats.rayleigh, scipy.stats.rice, scipy.stats.recipinvgauss,
-                scipy.stats.semicircular,
-                scipy.stats.skewnorm, scipy.stats.t, scipy.stats.trapezoid, scipy.stats.triang, scipy.stats.truncexpon,
-                scipy.stats.truncnorm, scipy.stats.tukeylambda, scipy.stats.uniform, scipy.stats.vonmises,
-                scipy.stats.vonmises_line,
-                scipy.stats.wald, scipy.stats.weibull_min, scipy.stats.weibull_max, scipy.stats.wrapcauchy]
-
-    dist_all_names = np.array([str(dist_all[i].name) for i in range(len(dist_all))])  # names of all
-    dists = [dist_all[np.where(dist_all_names == distributions[i])[0][0]] for i in
-             range(len(distributions))]  # get the distribution objects to test
-    params = [tuple(parameters[i]) for i in range(len(parameters))]
+    # Get all continuous distributions from scipy.stats   
+    dist_all = [getattr(scipy.stats, d) for d in dir(scipy.stats) if isinstance(getattr(scipy.stats, d), scipy.stats.rv_continuous)]
+    # Create a dictionary for fast lookup by distribution name
+    dist_dict = {dist.name: dist for dist in dist_all}
+    # Get the distribution objects to test
+    dists = [dist_dict[dist_name] for dist_name in distributions if dist_name in dist_dict]
+    # Create parameter tuples
+    params = [tuple(param) for param in parameters]
 
     return dists, params
 
