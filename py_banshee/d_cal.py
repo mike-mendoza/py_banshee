@@ -244,6 +244,16 @@ def test_distance(Sigma1, Sigma2, Type, Nvar):
         d-calibration score, the distance between matrices
    
     """
+
+    if np.any(np.isnan(Sigma1)) or np.any(np.isinf(Sigma1)):
+        raise ValueError("Sigma1 contains NaN or Inf values.")
+    if np.any(np.isnan(Sigma2)) or np.any(np.isinf(Sigma2)):
+        raise ValueError("Sigma2 contains NaN or Inf values.")
+        
+    epsilon = 1e-10  # A small value
+    Sigma1 = Sigma1 + epsilon * np.eye(Sigma1.shape[0])
+    Sigma2 = Sigma2 + epsilon * np.eye(Sigma2.shape[0])
+         
     # Mean vector of the first distribution
     m1 = np.zeros((Nvar, 1))
 
