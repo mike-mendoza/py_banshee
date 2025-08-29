@@ -21,7 +21,10 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install last st
 ```bash
 pip install py-banshee
 ```
-However, if you are looking for the latest updates, consider installation directly from sources.
+
+Dependencies are listed in `setup.py`. Note in particular that the dependency graphviz requires additional additional setup outside of your Python environment, described on the [graphviz documentation page]https://graphviz.readthedocs.io/en/stable/#installation) (see `graphviz_error.txt` for illustration of error Windows OS solution).
+
+If you are looking for the latest updates, consider installation directly from source (instead of `pip install`):
 ```
 git clone https://github.com/mike-mendoza/py_banshee.git
 cd py_banshee
