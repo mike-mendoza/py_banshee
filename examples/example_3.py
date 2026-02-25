@@ -55,7 +55,7 @@ R = bn_rankcorr(parent_cell,        # structure of the BN
 
 # The plot shows that safety has the strongest correlation with arts,
 # then the conditional correlation with recreation. The conditional 
-# correlations with with economics and climate are weaker. Between other 
+# correlations with economics and climate are weaker. Between other
 # variables, there is strong dependency between arts and recreation.
 
 #-----------------------------------------------------------------------------
@@ -70,7 +70,7 @@ bn_visualize(parent_cell,           # structure of the BN
 # rank correlations indicated on the arcs.
 
 bn_visualize(parent_cell,                       # structure of the BN
-             R,                                 # the rank correlation matrix 
+             R,                                 # the rank correlation matrix
              data.columns,                      # names of variables
              data = data,                       # DataFrame with data
              fig_name = fig_name + '_margins')  # figure name
@@ -79,7 +79,7 @@ bn_visualize(parent_cell,                       # structure of the BN
 # distributions for each variable are incorporated.
 
 #-----------------------------------------------------------------------------
-# Function 3 - cvm_statistics - test goodness-of-fit of the Gaussian copula 
+# Function 3 - cvm_statistics - test goodness-of-fit of the Gaussian copula
 #-----------------------------------------------------------------------------
 
 M = cvm_statistic(data,                   # DataFrame with data
@@ -87,8 +87,8 @@ M = cvm_statistic(data,                   # DataFrame with data
                   plot = True,               # create a plot (0=don't create plot)
                   fig_name = fig_name)    # figure name
 # The results of the goodness-of-fit test in terms of Cramer-von Mises
-# statistic highlight that the Gaussian copula is in majority of cases the 
-# most suitable for representing the dependency between variables, 
+# statistic highlight that the Gaussian copula is in majority of cases the
+# most suitable for representing the dependency between variables,
 # especially for the variable of interest (safety). This is important as
 # the method utilizes the Gaussian copula for dependence modelling.
 

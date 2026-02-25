@@ -289,4 +289,4 @@ def test_distance(Sigma1, Sigma2, Type, Nvar):
         # displating error if no valid distance type was inserted
         print('Error: Type not recognized')
 
-    return D
+    return  np.asarray(D).item()
